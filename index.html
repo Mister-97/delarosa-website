@@ -192,7 +192,9 @@
     /* FLAVOR BELT */
     .flavor-belt { background:linear-gradient(120deg,var(--peach),var(--lemon) 50%,var(--mint)); padding:52px 24px; text-align:center; }
     .flavor-belt h2 { font-family:'Pacifico',cursive; font-size:clamp(1.4rem,3.5vw,2.2rem); color:var(--burg); margin-bottom:24px; }
-    .flavor-pills { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; }
+    .flavor-pills { display:grid; grid-template-columns:repeat(5,auto); gap:10px; justify-content:center; }
+    @media (max-width:700px) { .flavor-pills { grid-template-columns:repeat(3,auto); } }
+    @media (max-width:440px) { .flavor-pills { grid-template-columns:repeat(2,auto); } }
     .fp { display:inline-block; background:var(--white); color:var(--burg); font-size:0.82rem; font-weight:600; padding:9px 20px; border-radius:100px; box-shadow:0 2px 12px rgba(155,36,87,0.1); border:1.5px solid rgba(155,36,87,0.12); transition:transform .15s,box-shadow .15s; }
     .fp:hover { transform:translateY(-3px); box-shadow:0 8px 20px rgba(155,36,87,0.18); }
 
