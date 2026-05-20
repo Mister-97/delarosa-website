@@ -14,206 +14,305 @@
   <meta name="twitter:image" content="https://mister-97.github.io/delarosa-website/assets/og-image.png">
   <link rel="canonical" href="https://mister-97.github.io/delarosa-website/">
 
-  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Pacifico&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Pacifico&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
 
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --burg:   #9b2457;
-      --burg2:  #c23b7a;
-      --burg-dk:#5e1638;
-      --rose:   #f06292;
-      --peach:  #ffddd2;
-      --lemon:  #fff8c5;
-      --mint:   #d4f4f0;
-      --teal:   #5bbdb6;
-      --gold:   #e6a817;
-      --pink-soft: #fde8f2;
-      --cream:  #fff9f2;
-      --white:  #ffffff;
-      --ink:    #1c1c1e;
-      --muted:  #7a7a8a;
+      --burg:    #9b2457;
+      --burg2:   #c23b7a;
+      --burg-dk: #5e1638;
+      --teal:    #5bbdb6;
+      --teal-lt: #d4f4f0;
+      --gold:    #e6a817;
+      --gold-lt: #fff3c4;
+      --peach:   #ffe8d6;
+      --pink:    #fde8f2;
+      --cream:   #fff9f2;
+      --white:   #ffffff;
+      --ink:     #1a1a1a;
+      --muted:   #888;
     }
 
     html { scroll-behavior: smooth; overflow-x: hidden; }
     body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--ink); overflow-x: hidden; }
 
-    /* NAV */
+    /* ── NAV ─────────────────────────────────────────── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 500;
-      height: 62px; padding: 0 28px;
+      height: 64px; padding: 0 32px;
       display: flex; align-items: center; justify-content: space-between;
-      background: rgba(255,249,242,0.88); backdrop-filter: blur(16px);
-      border-bottom: 1.5px solid rgba(155,36,87,0.08);
+      background: rgba(255,249,242,0.9);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(155,36,87,0.1);
     }
-    .nav-logo img { height: 50px; width: auto; display: block; }
-    .nav-r { display: flex; align-items: center; gap: 24px; }
-    .nav-r a { text-decoration: none; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); transition: color .2s; }
-    .nav-r a:hover { color: var(--burg); }
-    .nav-r .nav-cta {
-      background: linear-gradient(135deg, var(--burg) 0%, var(--burg2) 100%);
-      color: var(--white) !important; padding: 9px 22px; border-radius: 100px;
-      box-shadow: 0 4px 16px rgba(155,36,87,0.28); transition: transform .15s, box-shadow .2s !important;
+    .nav-logo img { height: 48px; width: auto; display: block; }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a { text-decoration: none; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); transition: color .2s; }
+    .nav-links a:hover { color: var(--burg); }
+    .nav-links .cta {
+      background: var(--burg); color: var(--white) !important;
+      padding: 9px 24px; border-radius: 100px;
+      box-shadow: 0 4px 18px rgba(155,36,87,0.3);
+      transition: background .2s, transform .15s !important;
     }
-    .nav-r .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(155,36,87,0.38) !important; }
-    @media (max-width:540px) { .nav-hide { display: none !important; } }
+    .nav-links .cta:hover { background: var(--burg-dk) !important; transform: translateY(-1px); }
+    @media (max-width: 540px) { .nav-hide { display: none !important; } nav { padding: 0 20px; } }
 
-    /* MARQUEE */
-    @keyframes ticker { to { transform: translateX(-50%); } }
-    .marquee { overflow: hidden; background: var(--burg); padding: 9px 0; margin-top: 62px; }
-    .m-track { display: inline-flex; animation: ticker 24s linear infinite; white-space: nowrap; }
-    .m-item { display: inline-flex; align-items: center; gap: 10px; padding: 0 18px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #fff; }
-    .m-star { color: var(--gold); font-size: 0.8rem; }
+    /* ── TICKER ──────────────────────────────────────── */
+    @keyframes tick { to { transform: translateX(-50%); } }
+    .ticker { overflow: hidden; background: var(--burg); padding: 8px 0; margin-top: 64px; }
+    .ticker-track { display: inline-flex; animation: tick 26s linear infinite; white-space: nowrap; }
+    .ticker-item { display: inline-flex; align-items: center; gap: 10px; padding: 0 20px; font-size: 0.67rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #fff; }
+    .ticker-star { color: var(--gold); }
 
-    /* HERO */
-    @keyframes bob {
-      0%,100% { transform: translateY(0) rotate(var(--r,0deg)) scale(1); }
-      50%      { transform: translateY(-14px) rotate(var(--r,0deg)) scale(1.02); }
-    }
-    @keyframes spin-slow { to { transform: rotate(360deg); } }
+    /* ── HERO ────────────────────────────────────────── */
+    @keyframes float { 0%,100%{transform:translateY(0) rotate(var(--r,0deg))} 50%{transform:translateY(-15px) rotate(var(--r,0deg))} }
+    @keyframes slow-spin { to { transform: rotate(360deg); } }
 
     .hero {
-      position: relative; overflow: hidden; min-height: 100svh;
-      background: linear-gradient(160deg, #fff2f6 0%, #fff9f2 40%, #f0fbfa 100%);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      text-align: center; padding: 90px 24px 100px;
-    }
-    .hero-deco { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
-    .deco-ring { position: absolute; border-radius: 50%; border: 2px dashed; opacity: 0.12; animation: spin-slow var(--spd,30s) linear infinite; }
-    .deco-ring.r1 { width:560px; height:560px; top:-140px; right:-140px; border-color:var(--burg); --spd:40s; }
-    .deco-ring.r2 { width:380px; height:380px; bottom:-100px; left:-80px; border-color:var(--teal); --spd:28s; animation-direction:reverse; }
-    .deco-ring.r3 { width:220px; height:220px; top:30%; left:8%; border-color:var(--gold); --spd:22s; }
-    .deco-blob { position:absolute; border-radius:50%; filter:blur(60px); opacity:0.22; pointer-events:none; }
-    .deco-blob.b1 { width:380px; height:380px; top:-60px; right:-40px; background:var(--rose); }
-    .deco-blob.b2 { width:300px; height:300px; bottom:-60px; left:-40px; background:#7dcfc8; }
-    .deco-blob.b3 { width:200px; height:200px; top:40%; left:15%; background:var(--gold); }
-
-    .floaters { position:absolute; inset:0; pointer-events:none; }
-    .fi { position:absolute; animation:bob var(--d,4s) ease-in-out infinite; animation-delay:var(--dl,0s); }
-    .fi img { width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 12px 24px rgba(155,36,87,0.22)); }
-    .fi.a { width:138px;height:138px; top:9%;  left:5%;   --r:-9deg;  --d:4.2s; --dl:0s; }
-    .fi.b { width:104px;height:104px; top:52%; left:3%;   --r: 5deg;  --d:3.8s; --dl:.6s; }
-    .fi.c { width:118px;height:118px; top:76%; left:12%;  --r:-4deg;  --d:4.5s; --dl:1.3s; }
-    .fi.d { width:86px; height:86px;  top:28%; left:17%;  --r: 9deg;  --d:3.6s; --dl:.3s; }
-    .fi.e { width:130px;height:130px; top:7%;  right:5%;  --r: 7deg;  --d:4.0s; --dl:.5s; }
-    .fi.f { width:98px; height:98px;  top:48%; right:3%;  --r:-5deg;  --d:4.4s; --dl:1.0s; }
-    .fi.g { width:112px;height:112px; top:74%; right:12%; --r: 4deg;  --d:3.9s; --dl:.2s; }
-    .fi.h { width:78px; height:78px;  top:26%; right:18%; --r:-8deg;  --d:4.7s; --dl:1.7s; }
-    @media (max-width:640px) {
-      .fi.c,.fi.d,.fi.g,.fi.h { display:none; }
-      .fi { width:60px !important; height:60px !important; }
-      .fi.a{top:6%;left:3%} .fi.b{top:6%;left:24%} .fi.e{top:6%;right:3%} .fi.f{top:6%;right:24%}
-      .hero { padding-top:145px; padding-bottom:60px; justify-content:flex-start; }
+      position: relative; min-height: 100svh; overflow: hidden;
+      background: var(--cream);
+      display: flex; align-items: center; justify-content: center;
+      padding: 100px 24px 80px;
     }
 
-    .hero-inner { position:relative; z-index:2; }
-    .hero-badge { display:inline-block; background:linear-gradient(135deg,var(--peach),var(--lemon)); color:var(--burg); font-size:0.78rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; padding:8px 22px; border-radius:100px; margin-bottom:26px; box-shadow:0 2px 14px rgba(230,168,23,0.2); }
-    .hero-logo { height:155px; width:auto; display:block; margin:0 auto 22px; filter:drop-shadow(0 12px 32px rgba(155,36,87,0.2)); }
-    @media (max-width:540px) { .hero-logo { height:105px; } }
-    .hero-h1 { font-family:'Abril Fatface',serif; font-size:clamp(2.4rem,7vw,5rem); line-height:1.05; color:var(--ink); margin-bottom:10px; }
-    .hero-h1 .swoop { font-family:'Pacifico',cursive; color:var(--burg); font-size:clamp(1.8rem,5.5vw,4rem); display:block; line-height:1.15; }
-    .hero-sub { font-size:1rem; color:var(--muted); margin-bottom:36px; }
-    .hero-btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
-    .btn { display:inline-flex; align-items:center; gap:8px; text-decoration:none; font-size:0.9rem; font-weight:600; padding:13px 30px; border-radius:100px; transition:transform .15s,box-shadow .2s,background .2s; }
-    .btn-fill { background:linear-gradient(135deg,var(--burg),var(--burg2)); color:var(--white); box-shadow:0 6px 22px rgba(155,36,87,0.3); }
-    .btn-fill:hover { transform:translateY(-2px); box-shadow:0 10px 30px rgba(155,36,87,0.4); }
-    .btn-soft { background:var(--white); color:var(--burg); border:2px solid rgba(155,36,87,0.2); box-shadow:0 2px 12px rgba(155,36,87,0.08); }
-    .btn-soft:hover { border-color:var(--burg); background:var(--burg); color:var(--white); transform:translateY(-2px); }
+    /* big watermark text behind everything */
+    .hero-watermark {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      pointer-events: none; z-index: 0; overflow: hidden;
+    }
+    .hero-watermark span {
+      font-family: 'Abril Fatface', serif;
+      font-size: clamp(120px, 22vw, 260px);
+      color: rgba(155,36,87,0.05);
+      white-space: nowrap;
+      letter-spacing: -0.02em;
+      user-select: none;
+    }
 
-    /* STATS */
-    .stats { background:var(--ink); display:grid; grid-template-columns:repeat(4,1fr); padding:32px 40px; }
-    @media (max-width:600px) { .stats { grid-template-columns:repeat(2,1fr); gap:24px 0; padding:28px 20px; } }
-    .stat { text-align:center; padding:8px 16px; border-right:1px solid rgba(255,255,255,0.08); }
-    .stat:last-child { border-right:none; }
-    @media (max-width:600px) { .stat:nth-child(2) { border-right:none; } }
-    .stat-n { font-family:'Pacifico',cursive; font-size:2.2rem; color:var(--gold); line-height:1; margin-bottom:5px; }
-    .stat-l { font-size:0.67rem; color:rgba(255,255,255,0.4); letter-spacing:0.1em; text-transform:uppercase; }
+    /* decorative blobs */
+    .hero-blobs { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+    .blob { position: absolute; border-radius: 50%; filter: blur(70px); opacity: 0.18; }
+    .blob-a { width: 440px; height: 440px; top: -80px; right: -80px; background: #f06292; }
+    .blob-b { width: 320px; height: 320px; bottom: -60px; left: -60px; background: var(--teal); }
+    .blob-c { width: 240px; height: 240px; top: 35%; left: 8%; background: var(--gold); }
 
-    /* SECTIONS */
-    .section { padding:88px 24px; }
-    .container { max-width:1080px; margin:0 auto; }
-    .eyebrow { font-size:0.67rem; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:var(--burg); margin-bottom:10px; }
-    .sec-h { font-family:'Abril Fatface',serif; font-size:clamp(1.9rem,4.5vw,3.2rem); line-height:1.08; margin-bottom:14px; }
-    .sec-p { font-size:0.97rem; color:var(--muted); line-height:1.78; }
+    /* spinning rings */
+    .ring { position: absolute; border-radius: 50%; border: 1.5px dashed; opacity: 0.1; animation: slow-spin var(--s,35s) linear infinite; pointer-events: none; z-index: 0; }
+    .ring-1 { width: 600px; height: 600px; top: -160px; right: -160px; border-color: var(--burg); }
+    .ring-2 { width: 400px; height: 400px; bottom: -100px; left: -100px; border-color: var(--teal); --s:25s; animation-direction: reverse; }
 
-    /* ABOUT */
-    .about { background:linear-gradient(160deg,#3d0e22 0%,#6b1a3f 60%,#8b2252 100%); }
-    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:center; }
-    @media (max-width:720px) { .about-grid { grid-template-columns:1fr; gap:44px; } }
-    .about .eyebrow { color:var(--mint); }
-    .about .sec-h { color:var(--white); }
-    .about .sec-p { color:rgba(255,255,255,0.7); max-width:100%; }
-    .about-logo { height:110px; width:auto; display:block; margin-bottom:24px; }
-    .feature-cards { display:flex; flex-direction:column; gap:14px; }
-    .fc { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); border-radius:20px; padding:20px 22px; display:flex; align-items:flex-start; gap:16px; backdrop-filter:blur(6px); transition:background .2s; }
-    .fc:hover { background:rgba(255,255,255,0.13); }
-    .fc-icon { width:42px; height:42px; border-radius:12px; flex-shrink:0; background:rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; font-size:1.3rem; }
-    .fc-text h3 { font-family:'Abril Fatface',serif; font-size:1rem; color:var(--white); margin-bottom:5px; }
-    .fc-text p { font-size:0.85rem; color:rgba(255,255,255,0.65); line-height:1.65; }
+    /* floating cookies */
+    .floaters { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+    .fi { position: absolute; animation: float var(--d,4s) ease-in-out infinite; animation-delay: var(--dl,0s); }
+    .fi img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 14px 28px rgba(155,36,87,0.25)); }
+    .fi.a { width:135px; height:135px; top:8%;  left:4%;   --r:-8deg;  --d:4.2s; }
+    .fi.b { width:100px; height:100px; top:54%; left:2%;   --r: 5deg;  --d:3.8s; --dl:.6s; }
+    .fi.c { width:115px; height:115px; top:76%; left:11%;  --r:-4deg;  --d:4.5s; --dl:1.3s; }
+    .fi.d { width:82px;  height:82px;  top:26%; left:16%;  --r: 9deg;  --d:3.6s; --dl:.3s; }
+    .fi.e { width:128px; height:128px; top:7%;  right:4%;  --r: 7deg;  --d:4.0s; --dl:.5s; }
+    .fi.f { width:96px;  height:96px;  top:48%; right:2%;  --r:-5deg;  --d:4.4s; --dl:1.0s; }
+    .fi.g { width:110px; height:110px; top:74%; right:11%; --r: 4deg;  --d:3.9s; --dl:.2s; }
+    .fi.h { width:76px;  height:76px;  top:24%; right:17%; --r:-8deg;  --d:4.7s; --dl:1.7s; }
+    @media (max-width: 640px) {
+      .fi.c,.fi.d,.fi.g,.fi.h { display: none; }
+      .fi { width: 58px !important; height: 58px !important; }
+      .fi.a{top:8%;left:2%} .fi.b{top:8%;left:22%} .fi.e{top:8%;right:2%} .fi.f{top:8%;right:22%}
+      .hero { padding-top: 140px; align-items: flex-start; }
+    }
 
-    /* MENU */
-    .menu { background:var(--cream); }
-    .menu-top { text-align:center; margin-bottom:60px; }
-    .menu-top .sec-p { max-width:400px; margin:0 auto; }
+    .hero-body { position: relative; z-index: 2; text-align: center; }
 
-    .menu-cat { margin-bottom:64px; }
-    .cat-head { display:flex; align-items:center; gap:14px; margin-bottom:6px; }
-    .cat-title { font-family:'Pacifico',cursive; font-size:1.7rem; color:var(--burg); white-space:nowrap; }
-    .cat-line { flex:1; height:2px; border-radius:2px; background:linear-gradient(90deg,rgba(155,36,87,0.25),transparent); }
-    .cat-sub { font-size:0.78rem; color:#bbb; letter-spacing:0.04em; margin-bottom:22px; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--burg); margin-bottom: 24px;
+    }
+    .hero-eyebrow::before, .hero-eyebrow::after { content: '✦'; color: var(--gold); }
 
-    /* Cookie cards — original clean style */
-    .g6 { display:grid; grid-template-columns:repeat(6,1fr); gap:14px; }
-    .g3 { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; max-width:500px; }
-    @media (max-width:860px) { .g6 { grid-template-columns:repeat(3,1fr); } }
-    @media (max-width:480px) { .g6 { grid-template-columns:repeat(2,1fr); } .g3 { grid-template-columns:repeat(3,1fr); } }
+    .hero-logo { height: 160px; width: auto; display: block; margin: 0 auto 28px; filter: drop-shadow(0 14px 36px rgba(155,36,87,0.18)); }
+    @media (max-width: 540px) { .hero-logo { height: 110px; margin-bottom: 20px; } }
+
+    .hero-h1 {
+      font-family: 'Abril Fatface', serif;
+      font-size: clamp(2.6rem, 7.5vw, 5.5rem);
+      line-height: 1.02; color: var(--ink); margin-bottom: 8px;
+    }
+    .hero-script {
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(2rem, 6vw, 4.4rem);
+      color: var(--burg); display: block; line-height: 1.2; margin-bottom: 18px;
+    }
+    .hero-sub { font-size: 1rem; color: var(--muted); margin-bottom: 38px; }
+
+    .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-size: 0.9rem; font-weight: 600; padding: 14px 32px; border-radius: 100px; transition: transform .15s, box-shadow .2s, background .2s; }
+    .btn-fill { background: var(--burg); color: var(--white); box-shadow: 0 6px 24px rgba(155,36,87,0.32); }
+    .btn-fill:hover { background: var(--burg-dk); transform: translateY(-2px); box-shadow: 0 10px 32px rgba(155,36,87,0.4); }
+    .btn-line { background: transparent; color: var(--burg); border: 2px solid var(--burg); }
+    .btn-line:hover { background: var(--burg); color: var(--white); transform: translateY(-2px); }
+
+    /* ── THREE-WORD STRIP ────────────────────────────── */
+    .word-strip {
+      display: grid; grid-template-columns: repeat(3,1fr);
+    }
+    .word-block {
+      padding: 40px 24px; text-align: center;
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+    }
+    .word-block:nth-child(1) { background: var(--burg); }
+    .word-block:nth-child(2) { background: var(--ink); }
+    .word-block:nth-child(3) { background: var(--teal); }
+    .word-big {
+      font-family: 'Abril Fatface', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      color: var(--white); line-height: 1;
+    }
+    .word-small { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+    @media (max-width: 500px) {
+      .word-block { padding: 28px 12px; }
+      .word-big { font-size: 1.7rem; }
+    }
+
+    /* ── STATS ───────────────────────────────────────── */
+    .stats { background: var(--ink); display: grid; grid-template-columns: repeat(4,1fr); }
+    @media (max-width: 600px) { .stats { grid-template-columns: repeat(2,1fr); } }
+    .stat { text-align: center; padding: 32px 16px; border-right: 1px solid rgba(255,255,255,0.07); }
+    .stat:last-child { border-right: none; }
+    @media (max-width: 600px) { .stat:nth-child(2) { border-right: none; } }
+    .stat-n { font-family: 'Pacifico', cursive; font-size: 2rem; color: var(--gold); line-height: 1; margin-bottom: 6px; }
+    .stat-l { font-size: 0.66rem; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; text-transform: uppercase; }
+
+    /* ── ABOUT ───────────────────────────────────────── */
+    .about { background: var(--cream); padding: 100px 24px; }
+    .about-inner { max-width: 1080px; margin: 0 auto; }
+
+    .about-top {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-bottom: 64px;
+    }
+    @media (max-width: 720px) { .about-top { grid-template-columns: 1fr; gap: 36px; margin-bottom: 40px; } }
+
+    .about-left .eyebrow { font-size: 0.67rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--burg); margin-bottom: 12px; }
+    .about-left h2 {
+      font-family: 'Abril Fatface', serif;
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      line-height: 1.05; color: var(--ink); margin-bottom: 18px;
+    }
+    .about-left p { font-size: 1rem; color: var(--muted); line-height: 1.8; }
+
+    .about-right { display: flex; flex-direction: column; gap: 0; padding-top: 8px; }
+    .about-feat {
+      display: flex; align-items: flex-start; gap: 18px;
+      padding: 22px 0; border-bottom: 1px solid rgba(0,0,0,0.07);
+    }
+    .about-feat:last-child { border-bottom: none; }
+    .feat-num {
+      font-family: 'Abril Fatface', serif; font-size: 2.2rem;
+      color: var(--burg); line-height: 1; flex-shrink: 0; width: 48px; text-align: right;
+    }
+    .feat-body h3 { font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+    .feat-body p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+
+    /* ── MENU ────────────────────────────────────────── */
+    .menu { background: linear-gradient(160deg, #fff0f7 0%, #fff9f2 60%, #f0fbfa 100%); padding: 100px 24px; }
+    .menu-inner { max-width: 1080px; margin: 0 auto; }
+
+    .menu-header { text-align: center; margin-bottom: 64px; }
+    .menu-header .eyebrow { font-size: 0.67rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--burg); margin-bottom: 10px; }
+    .menu-header h2 { font-family: 'Pacifico', cursive; font-size: clamp(2.2rem, 5vw, 3.6rem); color: var(--burg); margin-bottom: 8px; }
+    .menu-header p { font-size: 0.95rem; color: var(--muted); }
+
+    .menu-cat { margin-bottom: 72px; }
+    .cat-label {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: 'Pacifico', cursive; font-size: 1.5rem; color: var(--burg-dk);
+      margin-bottom: 24px; padding-bottom: 14px;
+      border-bottom: 2px solid rgba(155,36,87,0.15); width: 100%;
+    }
+    .cat-note { font-family: 'DM Sans', sans-serif; font-size: 0.75rem; font-weight: 500; color: var(--muted); margin-left: auto; letter-spacing: 0.04em; }
+
+    .g6 { display: grid; grid-template-columns: repeat(6,1fr); gap: 14px; }
+    .g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; max-width: 480px; }
+    @media (max-width: 860px) { .g6 { grid-template-columns: repeat(3,1fr); } }
+    @media (max-width: 500px) { .g6 { grid-template-columns: repeat(2,1fr); } .g3 { grid-template-columns: repeat(3,1fr); } }
 
     .cc {
-      background:var(--white); border-radius:18px; overflow:hidden;
-      box-shadow:0 3px 14px rgba(155,36,87,0.08);
-      transition:transform .22s,box-shadow .22s;
+      background: var(--white); border-radius: 20px; overflow: hidden;
+      box-shadow: 0 3px 16px rgba(155,36,87,0.07);
+      transition: transform .22s, box-shadow .22s;
     }
-    .cc:hover { transform:translateY(-6px); box-shadow:0 14px 34px rgba(155,36,87,0.16); }
+    .cc:hover { transform: translateY(-7px); box-shadow: 0 16px 36px rgba(155,36,87,0.15); }
     .cc-img {
-      width:100%; aspect-ratio:1;
-      background:var(--pink-soft);
-      display:flex; align-items:center; justify-content:center;
-      overflow:hidden; padding:8px;
+      width: 100%; aspect-ratio: 1;
+      background: var(--pink);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; padding: 8px;
     }
-    .cc-img img { width:100%; height:100%; object-fit:cover; transition:transform .3s; }
-    .cc:hover .cc-img img { transform:scale(1.06); }
+    .cc-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+    .cc:hover .cc-img img { transform: scale(1.07); }
     .cc-name {
-      padding:9px 8px 11px; text-align:center;
-      font-size:0.63rem; font-weight:700; letter-spacing:0.06em;
-      color:var(--burg-dk); text-transform:uppercase; line-height:1.3;
+      padding: 10px 8px 12px; text-align: center;
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.07em;
+      color: var(--burg-dk); text-transform: uppercase; line-height: 1.3;
     }
 
-    /* FLAVOR BELT */
-    .flavor-belt { background:linear-gradient(120deg,var(--peach),var(--lemon) 50%,var(--mint)); padding:52px 24px; text-align:center; }
-    .flavor-belt h2 { font-family:'Pacifico',cursive; font-size:clamp(1.4rem,3.5vw,2.2rem); color:var(--burg); margin-bottom:24px; }
-    .flavor-pills { display:grid; grid-template-columns:repeat(4,auto); gap:10px; justify-content:center; }
-    @media (max-width:700px) { .flavor-pills { grid-template-columns:repeat(3,auto); } }
-    @media (max-width:440px) { .flavor-pills { grid-template-columns:repeat(2,auto); } }
-    .fp { display:inline-block; background:var(--white); color:var(--burg); font-size:0.82rem; font-weight:600; padding:9px 20px; border-radius:100px; box-shadow:0 2px 12px rgba(155,36,87,0.1); border:1.5px solid rgba(155,36,87,0.12); transition:transform .15s,box-shadow .15s; }
-    .fp:hover { transform:translateY(-3px); box-shadow:0 8px 20px rgba(155,36,87,0.18); }
+    /* ── FLAVOR BELT ─────────────────────────────────── */
+    .flavor-belt { background: var(--ink); padding: 60px 24px; text-align: center; }
+    .flavor-belt h2 { font-family: 'Pacifico', cursive; font-size: clamp(1.5rem, 3.5vw, 2.4rem); color: var(--gold); margin-bottom: 28px; }
+    .flavor-pills { display: grid; grid-template-columns: repeat(4,auto); gap: 10px; justify-content: center; }
+    @media (max-width: 700px) { .flavor-pills { grid-template-columns: repeat(3,auto); } }
+    @media (max-width: 440px) { .flavor-pills { grid-template-columns: repeat(2,auto); } }
+    .fp {
+      display: inline-block; background: rgba(255,255,255,0.08);
+      color: var(--white); font-size: 0.82rem; font-weight: 500;
+      padding: 10px 20px; border-radius: 100px;
+      border: 1px solid rgba(255,255,255,0.12);
+      transition: background .2s, transform .15s;
+    }
+    .fp:hover { background: rgba(255,255,255,0.15); transform: translateY(-3px); }
 
-    /* ORDER */
-    .order { padding:88px 24px; background:linear-gradient(120deg,var(--peach),var(--lemon) 50%,var(--mint)); text-align:center; }
-    .order .sec-h { color:var(--burg-dk); }
-    .order .sec-p { max-width:460px; margin:0 auto 36px; color:#555; }
+    /* ── ORDER CTA ───────────────────────────────────── */
+    .order-cta {
+      background: linear-gradient(135deg, var(--burg-dk) 0%, var(--burg) 60%, var(--burg2) 100%);
+      padding: 100px 24px; text-align: center; position: relative; overflow: hidden;
+    }
+    .order-cta::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(255,255,255,0.05) 0%, transparent 60%);
+    }
+    .order-cta-inner { position: relative; z-index: 1; }
+    .order-cta h2 {
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(2rem, 5.5vw, 4rem);
+      color: var(--white); margin-bottom: 14px; line-height: 1.2;
+    }
+    .order-cta p { font-size: 1rem; color: rgba(255,255,255,0.7); max-width: 420px; margin: 0 auto 36px; line-height: 1.7; }
+    .btn-white { background: var(--white); color: var(--burg); box-shadow: 0 8px 28px rgba(0,0,0,0.2); }
+    .btn-white:hover { background: var(--cream); transform: translateY(-2px); box-shadow: 0 14px 36px rgba(0,0,0,0.28); }
 
-    /* FOOTER */
-    footer { background:#200810; padding:52px 24px 36px; text-align:center; }
-    .foot-logo { height:72px; width:auto; display:block; margin:0 auto 20px; }
-    .foot-links { display:flex; gap:24px; justify-content:center; flex-wrap:wrap; margin-bottom:18px; }
-    .foot-links a { text-decoration:none; font-size:0.75rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.38); transition:color .2s; }
-    .foot-links a:hover { color:var(--white); }
-    footer p { font-size:0.72rem; color:rgba(255,255,255,0.25); line-height:1.7; }
+    /* ── FOOTER ──────────────────────────────────────── */
+    footer {
+      background: var(--ink); padding: 52px 24px 36px; text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .foot-logo-pill {
+      display: inline-flex; align-items: center; justify-content: center;
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px; padding: 12px 22px; margin-bottom: 22px;
+    }
+    .foot-logo-pill img { height: 56px; width: auto; display: block; }
+    .foot-links { display: flex; gap: 28px; justify-content: center; flex-wrap: wrap; margin-bottom: 18px; }
+    .foot-links a { text-decoration: none; font-size: 0.74rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); transition: color .2s; }
+    .foot-links a:hover { color: var(--white); }
+    footer p { font-size: 0.72rem; color: rgba(255,255,255,0.22); line-height: 1.7; }
 
-    /* REVEAL */
-    .reveal { opacity:0; transform:translateY(28px); transition:opacity .6s ease,transform .6s ease; }
-    .reveal.in { opacity:1; transform:none; }
+    /* ── REVEAL ──────────────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.in { opacity: 1; transform: none; }
   </style>
 </head>
 <body>
@@ -221,49 +320,49 @@
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="#"><img src="assets/logos/delarosalogo.png" alt="Delarosa Sweet Treats"></a>
-  <div class="nav-r">
+  <div class="nav-links">
     <a href="#menu" class="nav-hide">Menu</a>
     <a href="#about" class="nav-hide">About</a>
-    <a href="https://www.facebook.com/profile.php?id=100086331616136" target="_blank" rel="noopener" class="nav-cta">Order Now</a>
+    <a href="https://www.facebook.com/profile.php?id=100086331616136" target="_blank" rel="noopener" class="cta">Order Now</a>
   </div>
 </nav>
 
-<!-- MARQUEE -->
-<div class="marquee">
-  <div class="m-track">
-    <span class="m-item">Delarosa Sweet Treats<span class="m-star">✦</span></span>
-    <span class="m-item">Lemon Dream<span class="m-star">✦</span></span>
-    <span class="m-item">Cookies &amp; Cream<span class="m-star">✦</span></span>
-    <span class="m-item">Turtle<span class="m-star">✦</span></span>
-    <span class="m-item">Birthday Cake<span class="m-star">✦</span></span>
-    <span class="m-item">Fort Worth TX<span class="m-star">✦</span></span>
-    <span class="m-item">Strawberry Crunch<span class="m-star">✦</span></span>
-    <span class="m-item">Cookie Butter Crunch<span class="m-star">✦</span></span>
-    <span class="m-item">Sugar Cookies<span class="m-star">✦</span></span>
-    <span class="m-item">Baked Fresh<span class="m-star">✦</span></span>
-    <span class="m-item">Delarosa Sweet Treats<span class="m-star">✦</span></span>
-    <span class="m-item">Lemon Dream<span class="m-star">✦</span></span>
-    <span class="m-item">Cookies &amp; Cream<span class="m-star">✦</span></span>
-    <span class="m-item">Turtle<span class="m-star">✦</span></span>
-    <span class="m-item">Birthday Cake<span class="m-star">✦</span></span>
-    <span class="m-item">Fort Worth TX<span class="m-star">✦</span></span>
-    <span class="m-item">Strawberry Crunch<span class="m-star">✦</span></span>
-    <span class="m-item">Cookie Butter Crunch<span class="m-star">✦</span></span>
-    <span class="m-item">Sugar Cookies<span class="m-star">✦</span></span>
-    <span class="m-item">Baked Fresh<span class="m-star">✦</span></span>
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item">Delarosa Sweet Treats<span class="ticker-star">✦</span></span>
+    <span class="ticker-item">Lemon Dream<span class="ticker-star">✦</span></span>
+    <span class="ticker-item">Cookies &amp; Cream<span class="ticker-star">✦</span></span>
+    <span class="ticker-item">Turtle<span class="ticker-star">✦</span></span>
+    <span class="ticker-item">Birthday Cake<span class="ticker-star">✦</span></span>
+    <span class="ticker-item">Fort Worth TX<span class="ticker-star">✦</span></span>
+    <span class="ticker-item">Strawberry Crunch<span class="ticker-star">✦</span></span>
+    <span class="ticker-item">Cookie Butter Crunch<span class="ticker-star">✦</span></span>
+    <span class="ticker-item">Sugar Cookies<span class="ticker-star">✦</span></span>
+    <span class="ticker-item">Baked Fresh<span class="ticker-star">✦</span></span>
+    <span class="ticker-item">Delarosa Sweet Treats<span class="ticker-star">✦</span></span>
+    <span class="ticker-item">Lemon Dream<span class="ticker-star">✦</span></span>
+    <span class="ticker-item">Cookies &amp; Cream<span class="ticker-star">✦</span></span>
+    <span class="ticker-item">Turtle<span class="ticker-star">✦</span></span>
+    <span class="ticker-item">Birthday Cake<span class="ticker-star">✦</span></span>
+    <span class="ticker-item">Fort Worth TX<span class="ticker-star">✦</span></span>
+    <span class="ticker-item">Strawberry Crunch<span class="ticker-star">✦</span></span>
+    <span class="ticker-item">Cookie Butter Crunch<span class="ticker-star">✦</span></span>
+    <span class="ticker-item">Sugar Cookies<span class="ticker-star">✦</span></span>
+    <span class="ticker-item">Baked Fresh<span class="ticker-star">✦</span></span>
   </div>
 </div>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-deco">
-    <div class="deco-ring r1"></div>
-    <div class="deco-ring r2"></div>
-    <div class="deco-ring r3"></div>
-    <div class="deco-blob b1"></div>
-    <div class="deco-blob b2"></div>
-    <div class="deco-blob b3"></div>
+  <div class="hero-watermark"><span>Delarosa</span></div>
+  <div class="hero-blobs">
+    <div class="blob blob-a"></div>
+    <div class="blob blob-b"></div>
+    <div class="blob blob-c"></div>
   </div>
+  <div class="ring ring-1"></div>
+  <div class="ring ring-2"></div>
   <div class="floaters">
     <div class="fi a"><img src="assets/cookies/turtle.png" alt=""></div>
     <div class="fi b"><img src="assets/cookies/lemon-dream.png" alt=""></div>
@@ -274,20 +373,34 @@
     <div class="fi g"><img src="assets/cookies/sugar-strawberry.png" alt=""></div>
     <div class="fi h"><img src="assets/cookies/sugar-lemon.png" alt=""></div>
   </div>
-  <div class="hero-inner">
-    <div class="hero-badge">✦ Handcrafted in Fort Worth ✦</div>
+  <div class="hero-body">
+    <div class="hero-eyebrow">Handcrafted in Fort Worth</div>
     <img class="hero-logo" src="assets/logos/delarosalogo.png" alt="Delarosa Sweet Treats">
-    <h1 class="hero-h1">
-      Cookies that hit<br>
-      <span class="swoop">different.</span>
-    </h1>
+    <h1 class="hero-h1">Cookies that hit</h1>
+    <span class="hero-script">different.</span>
     <p class="hero-sub">Big Softies and Sugar Cookies. Baked fresh, Fort Worth TX.</p>
     <div class="hero-btns">
       <a href="https://www.facebook.com/profile.php?id=100086331616136" target="_blank" rel="noopener" class="btn btn-fill">Order on Facebook</a>
-      <a href="#menu" class="btn btn-soft">See the Menu</a>
+      <a href="#menu" class="btn btn-line">See the Menu</a>
     </div>
   </div>
 </section>
+
+<!-- THREE-WORD STRIP -->
+<div class="word-strip">
+  <div class="word-block">
+    <div class="word-big">Thick.</div>
+    <div class="word-small">Not your average cookie</div>
+  </div>
+  <div class="word-block">
+    <div class="word-big">Chewy.</div>
+    <div class="word-small">Soft center, every time</div>
+  </div>
+  <div class="word-block">
+    <div class="word-big">Fresh.</div>
+    <div class="word-small">Made from scratch</div>
+  </div>
+</div>
 
 <!-- STATS -->
 <div class="stats">
@@ -298,33 +411,34 @@
 </div>
 
 <!-- ABOUT -->
-<section class="section about" id="about">
-  <div class="container">
-    <div class="about-grid">
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-top">
       <div class="reveal">
-        <img class="about-logo" src="assets/logos/delarosalogo.png" alt="Delarosa Sweet Treats">
-        <div class="eyebrow">Who We Are</div>
-        <h2 class="sec-h">Made from scratch. Every single time.</h2>
-        <p class="sec-p">Delarosa Sweet Treats is a Fort Worth bakery known for thick, chewy Big Softies and buttery velvety Sugar Cookies. Every batch is made fresh. No shortcuts, no compromises, just really good cookies.</p>
+        <div class="about-left">
+          <div class="eyebrow">Who We Are</div>
+          <h2>Made from scratch. Every single time.</h2>
+          <p>Delarosa Sweet Treats is a Fort Worth bakery known for thick, chewy Big Softies and buttery velvety Sugar Cookies. Every batch is made fresh. No shortcuts, no compromises, just really good cookies.</p>
+        </div>
       </div>
-      <div class="feature-cards reveal">
-        <div class="fc">
-          <div class="fc-icon">🍪</div>
-          <div class="fc-text">
+      <div class="about-right reveal">
+        <div class="about-feat">
+          <div class="feat-num">01</div>
+          <div class="feat-body">
             <h3>Big Softies</h3>
             <p>Thick, chewy, soft-centered. Six flavors: Lemon Dream, Turtle, Cookies &amp; Cream, Birthday Cake, Strawberry Crunch, Cookie Butter Crunch.</p>
           </div>
         </div>
-        <div class="fc">
-          <div class="fc-icon">🌸</div>
-          <div class="fc-text">
+        <div class="about-feat">
+          <div class="feat-num">02</div>
+          <div class="feat-body">
             <h3>Sugar Cookies</h3>
-            <p>Buttery and velvety with smooth frosting. Classic, Strawberry, and Lemon Meltaway. Perfect for any occasion.</p>
+            <p>Buttery and velvety with smooth frosting. Strawberry, Lemon Meltaway, and Classic. Perfect for any occasion.</p>
           </div>
         </div>
-        <div class="fc">
-          <div class="fc-icon">📦</div>
-          <div class="fc-text">
+        <div class="about-feat">
+          <div class="feat-num">03</div>
+          <div class="feat-body">
             <h3>Custom Orders</h3>
             <p>Birthdays, events, gifting. Message us on Facebook and we'll sort you out.</p>
           </div>
@@ -335,20 +449,19 @@
 </section>
 
 <!-- MENU -->
-<section class="section menu" id="menu">
-  <div class="container">
-    <div class="menu-top reveal">
+<section class="menu" id="menu">
+  <div class="menu-inner">
+    <div class="menu-header reveal">
       <div class="eyebrow">What We Bake</div>
-      <h2 class="sec-h" style="font-family:'Pacifico',cursive;color:var(--burg)">The Menu</h2>
-      <p class="sec-p">Two styles, nine flavors. All made fresh.</p>
+      <h2>The Menu</h2>
+      <p>Two styles, nine flavors. All made fresh.</p>
     </div>
 
     <div class="menu-cat reveal">
-      <div class="cat-head">
-        <h3 class="cat-title">🍪 Big Softies</h3>
-        <div class="cat-line"></div>
+      <div class="cat-label">
+        🍪 Big Softies
+        <span class="cat-note">Thick &amp; chewy</span>
       </div>
-      <p class="cat-sub">Thick, chewy, soft-centered</p>
       <div class="g6">
         <div class="cc"><div class="cc-img"><img src="assets/cookies/lemon-dream.png" alt="Lemon Dream" loading="lazy"></div><div class="cc-name">Lemon Dream</div></div>
         <div class="cc"><div class="cc-img"><img src="assets/cookies/cookies-cream.png" alt="Cookies & Cream" loading="lazy"></div><div class="cc-name">Cookies &amp; Cream</div></div>
@@ -360,11 +473,10 @@
     </div>
 
     <div class="menu-cat reveal">
-      <div class="cat-head">
-        <h3 class="cat-title">🌸 Sugar Cookies</h3>
-        <div class="cat-line"></div>
+      <div class="cat-label">
+        🌸 Sugar Cookies
+        <span class="cat-note">Buttery &amp; frosted</span>
       </div>
-      <p class="cat-sub">Buttery, velvety, frosted with care</p>
       <div class="g3">
         <div class="cc"><div class="cc-img"><img src="assets/cookies/sugar-strawberry.png" alt="Strawberry" loading="lazy"></div><div class="cc-name">Strawberry</div></div>
         <div class="cc"><div class="cc-img"><img src="assets/cookies/sugar-lemon.png" alt="Lemon Meltaway" loading="lazy"></div><div class="cc-name">Lemon Meltaway</div></div>
@@ -389,21 +501,20 @@
   </div>
 </div>
 
-<!-- ORDER -->
-<section class="order">
-  <div class="container">
-    <div class="eyebrow">Ready to Order?</div>
-    <h2 class="sec-h reveal" style="font-family:'Pacifico',cursive">Let's get you some cookies.</h2>
-    <p class="sec-p reveal">Custom orders, event boxes, or just a treat for yourself. Message us on Facebook.</p>
-    <div class="reveal">
-      <a href="https://www.facebook.com/profile.php?id=100086331616136" target="_blank" rel="noopener" class="btn btn-fill">Message on Facebook</a>
-    </div>
+<!-- ORDER CTA -->
+<section class="order-cta">
+  <div class="order-cta-inner reveal">
+    <h2>Let's get you some cookies.</h2>
+    <p>Custom orders, event boxes, or just a treat for yourself. Message us on Facebook.</p>
+    <a href="https://www.facebook.com/profile.php?id=100086331616136" target="_blank" rel="noopener" class="btn btn-white">Message on Facebook</a>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <img class="foot-logo" src="assets/logos/delarosalogo.png" alt="Delarosa Sweet Treats">
+  <div class="foot-logo-pill">
+    <img src="assets/logos/delarosalogo.png" alt="Delarosa Sweet Treats">
+  </div>
   <div class="foot-links">
     <a href="#menu">Menu</a>
     <a href="#about">About</a>
@@ -413,7 +524,9 @@
 </footer>
 
 <script>
-  const io = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);} }), {threshold:.1});
+  const io = new IntersectionObserver(e => e.forEach(x => {
+    if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); }
+  }), { threshold: .1 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
 </body>
