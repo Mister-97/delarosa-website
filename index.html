@@ -177,6 +177,16 @@
       .word-big { font-size: 1.7rem; }
     }
 
+    /* ── WORD STRIP ──────────────────────────────────── */
+    .word-strip { display: grid; grid-template-columns: repeat(3,1fr); }
+    .word-block { padding: 40px 24px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .word-block:nth-child(1) { background: var(--burg); }
+    .word-block:nth-child(2) { background: var(--ink); }
+    .word-block:nth-child(3) { background: var(--teal); }
+    .word-big { font-family: 'Abril Fatface', serif; font-size: clamp(2rem, 4vw, 3.2rem); color: var(--white); line-height: 1; }
+    .word-small { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+    @media (max-width: 500px) { .word-block { padding: 28px 12px; } .word-big { font-size: 1.7rem; } }
+
     /* ── STATS ───────────────────────────────────────── */
     .stats { background: var(--ink); display: grid; grid-template-columns: repeat(4,1fr); }
     @media (max-width: 600px) { .stats { grid-template-columns: repeat(2,1fr); } }
@@ -302,6 +312,36 @@
       color: var(--burg-dk); text-align: center; line-height: 1.3;
     }
 
+    /* ── GALLERY CAROUSEL ────────────────────────────── */
+    .gallery { background: var(--cream); padding: 80px 0; overflow: hidden; }
+    .gallery-header { text-align: center; padding: 0 24px; margin-bottom: 40px; }
+    .gallery-header h2 { font-family: 'Pacifico', cursive; font-size: clamp(1.8rem, 4vw, 2.8rem); color: var(--burg); margin-bottom: 6px; }
+    .gallery-header p { font-size: 0.9rem; color: var(--muted); }
+
+    @keyframes scroll-photos { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    .gallery-track-wrap {
+      overflow: hidden;
+      mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+    }
+    .gallery-track {
+      display: flex; gap: 16px;
+      animation: scroll-photos 22s linear infinite;
+      width: max-content;
+    }
+    .gallery-track:hover { animation-play-state: paused; }
+    .gallery-photo {
+      width: 280px; height: 280px; flex-shrink: 0;
+      border-radius: 20px; overflow: hidden;
+      box-shadow: 0 6px 24px rgba(155,36,87,0.12);
+    }
+    .gallery-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    @media (max-width: 600px) {
+      .gallery-photo { width: 220px; height: 220px; }
+    }
+
     /* ── ORDER CTA ───────────────────────────────────── */
     .order-cta {
       background: linear-gradient(135deg, var(--burg-dk) 0%, var(--burg) 60%, var(--burg2) 100%);
@@ -413,6 +453,22 @@
   </div>
 </section>
 
+
+<!-- WORD STRIP -->
+<div class="word-strip">
+  <div class="word-block">
+    <div class="word-big">Thick.</div>
+    <div class="word-small">Not your average cookie</div>
+  </div>
+  <div class="word-block">
+    <div class="word-big">Chewy.</div>
+    <div class="word-small">Soft center, every time</div>
+  </div>
+  <div class="word-block">
+    <div class="word-big">Fresh.</div>
+    <div class="word-small">Made from scratch</div>
+  </div>
+</div>
 
 <!-- ABOUT -->
 <section class="about" id="about">
@@ -528,6 +584,36 @@
     </div>
   </div>
 </div>
+
+<!-- GALLERY CAROUSEL -->
+<section class="gallery">
+  <div class="gallery-header reveal">
+    <h2>Fresh out the kitchen.</h2>
+    <p>Handcrafted with love, Fort Worth TX</p>
+  </div>
+  <div class="gallery-track-wrap">
+    <div class="gallery-track">
+      <!-- original set -->
+      <div class="gallery-photo"><img src="assets/gallery/photo1.jpg" alt="Delarosa treats" loading="lazy"></div>
+      <div class="gallery-photo"><img src="assets/cookies/birthday-cake.png" alt="Birthday Cake" loading="lazy"></div>
+      <div class="gallery-photo"><img src="assets/cookies/turtle.png" alt="Turtle" loading="lazy"></div>
+      <div class="gallery-photo"><img src="assets/cookies/lemon-dream.png" alt="Lemon Dream" loading="lazy"></div>
+      <div class="gallery-photo"><img src="assets/cookies/cookies-cream.png" alt="Cookies & Cream" loading="lazy"></div>
+      <div class="gallery-photo"><img src="assets/cookies/strawberry-crunch.png" alt="Strawberry Crunch" loading="lazy"></div>
+      <div class="gallery-photo"><img src="assets/cookies/sugar-strawberry.png" alt="Sugar Strawberry" loading="lazy"></div>
+      <div class="gallery-photo"><img src="assets/gallery/photo1.jpg" alt="Delarosa treats" loading="lazy"></div>
+      <!-- duplicate for seamless loop -->
+      <div class="gallery-photo"><img src="assets/gallery/photo1.jpg" alt="Delarosa treats" loading="lazy"></div>
+      <div class="gallery-photo"><img src="assets/cookies/birthday-cake.png" alt="Birthday Cake" loading="lazy"></div>
+      <div class="gallery-photo"><img src="assets/cookies/turtle.png" alt="Turtle" loading="lazy"></div>
+      <div class="gallery-photo"><img src="assets/cookies/lemon-dream.png" alt="Lemon Dream" loading="lazy"></div>
+      <div class="gallery-photo"><img src="assets/cookies/cookies-cream.png" alt="Cookies & Cream" loading="lazy"></div>
+      <div class="gallery-photo"><img src="assets/cookies/strawberry-crunch.png" alt="Strawberry Crunch" loading="lazy"></div>
+      <div class="gallery-photo"><img src="assets/cookies/sugar-strawberry.png" alt="Sugar Strawberry" loading="lazy"></div>
+      <div class="gallery-photo"><img src="assets/gallery/photo1.jpg" alt="Delarosa treats" loading="lazy"></div>
+    </div>
+  </div>
+</section>
 
 <!-- ORDER CTA -->
 <section class="order-cta">
