@@ -37,13 +37,12 @@
     html { scroll-behavior: smooth; overflow-x: hidden; }
     body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--ink); overflow-x: hidden; }
 
-    /* ── NAV ──────────────────────────────────────────── */
+    /* NAV */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 500;
       height: 62px; padding: 0 28px;
       display: flex; align-items: center; justify-content: space-between;
-      background: rgba(255,249,242,0.88);
-      backdrop-filter: blur(16px);
+      background: rgba(255,249,242,0.88); backdrop-filter: blur(16px);
       border-bottom: 1.5px solid rgba(155,36,87,0.08);
     }
     .nav-logo img { height: 50px; width: auto; display: block; }
@@ -58,14 +57,14 @@
     .nav-r .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(155,36,87,0.38) !important; }
     @media (max-width:540px) { .nav-hide { display: none !important; } }
 
-    /* ── MARQUEE ──────────────────────────────────────── */
+    /* MARQUEE */
     @keyframes ticker { to { transform: translateX(-50%); } }
     .marquee { overflow: hidden; background: var(--burg); padding: 9px 0; margin-top: 62px; }
     .m-track { display: inline-flex; animation: ticker 24s linear infinite; white-space: nowrap; }
     .m-item { display: inline-flex; align-items: center; gap: 10px; padding: 0 18px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #fff; }
     .m-star { color: var(--gold); font-size: 0.8rem; }
 
-    /* ── HERO ─────────────────────────────────────────── */
+    /* HERO */
     @keyframes bob {
       0%,100% { transform: translateY(0) rotate(var(--r,0deg)) scale(1); }
       50%      { transform: translateY(-14px) rotate(var(--r,0deg)) scale(1.02); }
@@ -78,29 +77,19 @@
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       text-align: center; padding: 90px 24px 120px;
     }
-
-    /* decorative circles */
     .hero-deco { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
-    .deco-ring {
-      position: absolute; border-radius: 50%; border: 2px dashed;
-      opacity: 0.12; animation: spin-slow var(--spd,30s) linear infinite;
-    }
+    .deco-ring { position: absolute; border-radius: 50%; border: 2px dashed; opacity: 0.12; animation: spin-slow var(--spd,30s) linear infinite; }
     .deco-ring.r1 { width:560px; height:560px; top:-140px; right:-140px; border-color:var(--burg); --spd:40s; }
-    .deco-ring.r2 { width:380px; height:380px; bottom:-100px; left:-80px; border-color:var(--teal); --spd:28s; animation-direction: reverse; }
+    .deco-ring.r2 { width:380px; height:380px; bottom:-100px; left:-80px; border-color:var(--teal); --spd:28s; animation-direction:reverse; }
     .deco-ring.r3 { width:220px; height:220px; top:30%; left:8%; border-color:var(--gold); --spd:22s; }
-
-    .deco-blob {
-      position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.22; pointer-events: none;
-    }
+    .deco-blob { position:absolute; border-radius:50%; filter:blur(60px); opacity:0.22; pointer-events:none; }
     .deco-blob.b1 { width:380px; height:380px; top:-60px; right:-40px; background:var(--rose); }
-    .deco-blob.b2 { width:300px; height:300px; bottom:-60px; left:-40px; background: #7dcfc8; }
+    .deco-blob.b2 { width:300px; height:300px; bottom:-60px; left:-40px; background:#7dcfc8; }
     .deco-blob.b3 { width:200px; height:200px; top:40%; left:15%; background:var(--gold); }
 
-    /* floaters */
-    .floaters { position: absolute; inset: 0; pointer-events: none; }
-    .fi { position: absolute; animation: bob var(--d,4s) ease-in-out infinite; animation-delay: var(--dl,0s); }
-    .fi img { width:100%; height:100%; object-fit:contain; filter: drop-shadow(0 12px 24px rgba(155,36,87,0.22)); }
-
+    .floaters { position:absolute; inset:0; pointer-events:none; }
+    .fi { position:absolute; animation:bob var(--d,4s) ease-in-out infinite; animation-delay:var(--dl,0s); }
+    .fi img { width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 12px 24px rgba(155,36,87,0.22)); }
     .fi.a { width:138px;height:138px; top:9%;  left:5%;   --r:-9deg;  --d:4.2s; --dl:0s; }
     .fi.b { width:104px;height:104px; top:52%; left:3%;   --r: 5deg;  --d:3.8s; --dl:.6s; }
     .fi.c { width:118px;height:118px; top:76%; left:12%;  --r:-4deg;  --d:4.5s; --dl:1.3s; }
@@ -109,7 +98,6 @@
     .fi.f { width:98px; height:98px;  top:48%; right:3%;  --r:-5deg;  --d:4.4s; --dl:1.0s; }
     .fi.g { width:112px;height:112px; top:74%; right:12%; --r: 4deg;  --d:3.9s; --dl:.2s; }
     .fi.h { width:78px; height:78px;  top:26%; right:18%; --r:-8deg;  --d:4.7s; --dl:1.7s; }
-
     @media (max-width:640px) {
       .fi.c,.fi.d,.fi.g,.fi.h { display:none; }
       .fi { width:60px !important; height:60px !important; }
@@ -118,51 +106,27 @@
     }
 
     .hero-inner { position:relative; z-index:2; }
-
     .hero-badge {
-      display: inline-block;
-      background: linear-gradient(135deg, var(--peach), var(--lemon));
-      color: var(--burg); font-size: 0.78rem; font-weight: 700;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      padding: 8px 22px; border-radius: 100px; margin-bottom: 26px;
-      box-shadow: 0 2px 14px rgba(230,168,23,0.2);
+      display:inline-block; background:linear-gradient(135deg,var(--peach),var(--lemon));
+      color:var(--burg); font-size:0.78rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase;
+      padding:8px 22px; border-radius:100px; margin-bottom:26px; box-shadow:0 2px 14px rgba(230,168,23,0.2);
     }
-
     .hero-logo { height:155px; width:auto; display:block; margin:0 auto 22px; filter:drop-shadow(0 12px 32px rgba(155,36,87,0.2)); }
     @media (max-width:540px) { .hero-logo { height:105px; } }
-
-    .hero-h1 {
-      font-family: 'Abril Fatface', serif;
-      font-size: clamp(2.4rem, 7vw, 5rem);
-      line-height: 1.05; color: var(--ink); margin-bottom: 10px;
-      letter-spacing: -0.01em;
-    }
-    .hero-h1 .swoop {
-      font-family: 'Pacifico', cursive;
-      color: var(--burg);
-      font-size: clamp(1.8rem, 5.5vw, 4rem);
-      display: block; line-height: 1.15;
-    }
-
-    .hero-sub { font-size: 1rem; color: var(--muted); margin-bottom: 36px; }
-
+    .hero-h1 { font-family:'Abril Fatface',serif; font-size:clamp(2.4rem,7vw,5rem); line-height:1.05; color:var(--ink); margin-bottom:10px; }
+    .hero-h1 .swoop { font-family:'Pacifico',cursive; color:var(--burg); font-size:clamp(1.8rem,5.5vw,4rem); display:block; line-height:1.15; }
+    .hero-sub { font-size:1rem; color:var(--muted); margin-bottom:36px; }
     .hero-btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
-    .btn { display:inline-flex; align-items:center; gap:8px; text-decoration:none; font-size:0.9rem; font-weight:600; padding:13px 30px; border-radius:100px; transition:transform .15s, box-shadow .2s, background .2s; }
+    .btn { display:inline-flex; align-items:center; gap:8px; text-decoration:none; font-size:0.9rem; font-weight:600; padding:13px 30px; border-radius:100px; transition:transform .15s,box-shadow .2s,background .2s; }
     .btn-fill { background:linear-gradient(135deg,var(--burg),var(--burg2)); color:var(--white); box-shadow:0 6px 22px rgba(155,36,87,0.3); }
     .btn-fill:hover { transform:translateY(-2px); box-shadow:0 10px 30px rgba(155,36,87,0.4); }
     .btn-soft { background:var(--white); color:var(--burg); border:2px solid rgba(155,36,87,0.2); box-shadow:0 2px 12px rgba(155,36,87,0.08); }
     .btn-soft:hover { border-color:var(--burg); background:var(--burg); color:var(--white); transform:translateY(-2px); }
 
-    /* wave divider */
     .wave { display:block; width:100%; height:auto; margin-bottom:-2px; }
 
-    /* ── STATS ────────────────────────────────────────── */
-    .stats {
-      background: var(--ink);
-      display: grid; grid-template-columns: repeat(4,1fr);
-      padding: 32px 40px;
-      gap: 0;
-    }
+    /* STATS */
+    .stats { background:var(--ink); display:grid; grid-template-columns:repeat(4,1fr); padding:32px 40px; }
     @media (max-width:600px) { .stats { grid-template-columns:repeat(2,1fr); gap:24px 0; padding:28px 20px; } }
     .stat { text-align:center; padding:8px 16px; border-right:1px solid rgba(255,255,255,0.08); }
     .stat:last-child { border-right:none; }
@@ -170,22 +134,18 @@
     .stat-n { font-family:'Pacifico',cursive; font-size:2.2rem; color:var(--gold); line-height:1; margin-bottom:5px; }
     .stat-l { font-size:0.67rem; color:rgba(255,255,255,0.4); letter-spacing:0.1em; text-transform:uppercase; }
 
-    /* ── SECTIONS ─────────────────────────────────────── */
+    /* SECTIONS */
     .section { padding:88px 24px; }
     .container { max-width:1080px; margin:0 auto; }
     .eyebrow { font-size:0.67rem; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:var(--burg); margin-bottom:10px; }
-    .sec-h {
-      font-family:'Abril Fatface',serif;
-      font-size:clamp(1.9rem,4.5vw,3.2rem);
-      line-height:1.08; margin-bottom:14px;
-    }
+    .sec-h { font-family:'Abril Fatface',serif; font-size:clamp(1.9rem,4.5vw,3.2rem); line-height:1.08; margin-bottom:14px; }
     .sec-p { font-size:0.97rem; color:var(--muted); line-height:1.78; }
 
-    /* ── ABOUT ────────────────────────────────────────── */
+    /* ABOUT */
     .about { background:linear-gradient(160deg,#3d0e22 0%,#6b1a3f 60%,#8b2252 100%); position:relative; overflow:hidden; }
     .about::before {
       content:''; position:absolute; inset:0;
-      background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Ccircle cx='10' cy='10' r='2' fill='%23ffffff' fill-opacity='0.03'/%3E%3Ccircle cx='50' cy='30' r='3' fill='%23ffffff' fill-opacity='0.02'/%3E%3Ccircle cx='70' cy='60' r='2' fill='%23ffffff' fill-opacity='0.03'/%3E%3Ccircle cx='20' cy='65' r='2.5' fill='%23ffffff' fill-opacity='0.025'/%3E%3C/g%3E%3C/svg%3E");
+      background:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Ccircle cx='10' cy='10' r='2' fill='%23ffffff' fill-opacity='0.03'/%3E%3Ccircle cx='50' cy='30' r='3' fill='%23ffffff' fill-opacity='0.02'/%3E%3Ccircle cx='70' cy='60' r='2' fill='%23ffffff' fill-opacity='0.03'/%3E%3Ccircle cx='20' cy='65' r='2.5' fill='%23ffffff' fill-opacity='0.025'/%3E%3C/g%3E%3C/svg%3E");
       pointer-events:none;
     }
     .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:center; }
@@ -193,112 +153,125 @@
     .about .eyebrow { color:var(--mint); }
     .about .sec-h { color:var(--white); }
     .about .sec-p { color:rgba(255,255,255,0.7); max-width:100%; }
-    .about-logo { height:100px; width:auto; margin-bottom:22px; filter:brightness(0) invert(1) opacity(.85); }
+
+    /* logo shown in a white card so it always displays correctly */
+    .about-logo-card {
+      display:inline-flex; align-items:center; justify-content:center;
+      background:var(--white); border-radius:20px; padding:18px 28px;
+      margin-bottom:26px; box-shadow:0 8px 28px rgba(0,0,0,0.3);
+    }
+    .about-logo-card img { height:72px; width:auto; display:block; }
 
     .feature-cards { display:flex; flex-direction:column; gap:14px; }
-    .fc {
-      background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14);
-      border-radius:20px; padding:20px 22px;
-      display:flex; align-items:flex-start; gap:16px;
-      backdrop-filter:blur(6px); transition:background .2s;
-    }
+    .fc { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); border-radius:20px; padding:20px 22px; display:flex; align-items:flex-start; gap:16px; backdrop-filter:blur(6px); transition:background .2s; }
     .fc:hover { background:rgba(255,255,255,0.13); }
-    .fc-icon {
-      width:42px; height:42px; border-radius:12px; flex-shrink:0;
-      background:rgba(255,255,255,0.12);
-      display:flex; align-items:center; justify-content:center; font-size:1.3rem;
-    }
+    .fc-icon { width:42px; height:42px; border-radius:12px; flex-shrink:0; background:rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; font-size:1.3rem; }
     .fc-text h3 { font-family:'Abril Fatface',serif; font-size:1rem; color:var(--white); margin-bottom:5px; }
     .fc-text p { font-size:0.85rem; color:rgba(255,255,255,0.65); line-height:1.65; }
 
-    /* ── MENU ─────────────────────────────────────────── */
+    /* MENU */
     .menu { background:var(--cream); }
-    .menu-top { text-align:center; margin-bottom:56px; }
+    .menu-top { text-align:center; margin-bottom:60px; }
     .menu-top .sec-p { max-width:400px; margin:0 auto; }
 
-    .menu-cat { margin-bottom:64px; }
+    .menu-cat { margin-bottom:72px; }
     .cat-head { display:flex; align-items:center; gap:14px; margin-bottom:6px; }
-    .cat-title { font-family:'Pacifico',cursive; font-size:1.6rem; color:var(--burg); white-space:nowrap; }
-    .cat-line { flex:1; height:2px; border-radius:2px; background:linear-gradient(90deg,rgba(155,36,87,0.25) 0%,transparent 100%); }
-    .cat-sub { font-size:0.78rem; color:#bbb; letter-spacing:0.04em; margin-bottom:22px; }
+    .cat-title { font-family:'Pacifico',cursive; font-size:1.7rem; color:var(--burg); white-space:nowrap; }
+    .cat-line { flex:1; height:2px; border-radius:2px; background:linear-gradient(90deg,rgba(155,36,87,0.25),transparent); }
+    .cat-sub { font-size:0.78rem; color:#bbb; letter-spacing:0.04em; margin-bottom:24px; }
 
-    .g6 { display:grid; grid-template-columns:repeat(6,1fr); gap:16px; }
-    .g3 { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; max-width:500px; }
-    @media (max-width:860px) { .g6 { grid-template-columns:repeat(3,1fr); } }
-    @media (max-width:480px) { .g6 { grid-template-columns:repeat(2,1fr); } .g3 { grid-template-columns:repeat(3,1fr); } }
-
-    .cc {
-      background:var(--white); border-radius:20px; overflow:hidden;
-      box-shadow:0 3px 16px rgba(155,36,87,0.08);
-      transition:transform .22s, box-shadow .22s;
+    /* Big Softies grid: colorful staggered cards */
+    .softies-grid {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      grid-template-rows:auto auto;
+      gap:16px;
     }
-    .cc:hover { transform:translateY(-7px) rotate(.5deg); box-shadow:0 14px 36px rgba(155,36,87,0.18); }
-    .cc-img {
+    @media (max-width:640px) { .softies-grid { grid-template-columns:repeat(2,1fr); } }
+
+    .sc {
+      border-radius:24px; overflow:hidden;
+      box-shadow:0 4px 20px rgba(0,0,0,0.08);
+      transition:transform .22s,box-shadow .22s;
+      display:flex; flex-direction:column;
+    }
+    .sc:hover { transform:translateY(-8px) rotate(.4deg); box-shadow:0 16px 40px rgba(0,0,0,0.14); }
+    .sc-img {
       width:100%; aspect-ratio:1;
-      background:linear-gradient(145deg,#fde8f2,#fff2f9);
       display:flex; align-items:center; justify-content:center;
-      overflow:hidden; padding:8px;
+      overflow:hidden; padding:10px;
     }
-    .cc-img img { width:100%; height:100%; object-fit:cover; transition:transform .3s; }
-    .cc:hover .cc-img img { transform:scale(1.07); }
-    .cc-name {
-      padding:9px 8px 11px; text-align:center;
-      font-size:0.63rem; font-weight:700; letter-spacing:0.06em;
-      color:var(--burg); text-transform:uppercase; line-height:1.3;
+    .sc-img img { width:100%; height:100%; object-fit:cover; transition:transform .3s; border-radius:16px; }
+    .sc:hover .sc-img img { transform:scale(1.07); }
+    .sc-label {
+      padding:10px 14px 13px; text-align:center;
+      font-family:'Pacifico',cursive; font-size:0.78rem;
+      line-height:1.3;
     }
 
-    /* ── FLAVOUR PILLS ────────────────────────────────── */
-    .flavor-belt {
-      background:linear-gradient(120deg,var(--peach),var(--lemon) 50%,var(--mint));
-      padding:48px 24px; text-align:center;
+    /* per-flavor colors */
+    .sc.lemon    { background:#fffbe8; } .sc.lemon    .sc-label { color:#8a6800; }
+    .sc.cream    { background:#f4f4f4; } .sc.cream    .sc-label { color:#444; }
+    .sc.bday     { background:#fde8f4; } .sc.bday     .sc-label { color:#9b2457; }
+    .sc.turtle   { background:#fef3e2; } .sc.turtle   .sc-label { color:#7a4800; }
+    .sc.straw    { background:#ffe8ed; } .sc.straw    .sc-label { color:#c0184a; }
+    .sc.butter   { background:#fff3d6; } .sc.butter   .sc-label { color:#7a5200; }
+
+    /* Sugar cookies row */
+    .sugar-grid {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+      max-width:640px;
     }
-    .flavor-belt h2 {
-      font-family:'Pacifico',cursive; font-size:clamp(1.4rem,3.5vw,2.2rem);
-      color:var(--burg); margin-bottom:24px;
+    @media (max-width:500px) { .sugar-grid { grid-template-columns:repeat(3,1fr); } }
+
+    .sgc {
+      border-radius:24px; overflow:hidden;
+      box-shadow:0 4px 20px rgba(0,0,0,0.07);
+      transition:transform .22s,box-shadow .22s;
     }
+    .sgc:hover { transform:translateY(-8px) rotate(-.4deg); box-shadow:0 16px 36px rgba(0,0,0,0.13); }
+    .sgc-img { width:100%; aspect-ratio:1; display:flex; align-items:center; justify-content:center; overflow:hidden; padding:10px; }
+    .sgc-img img { width:100%; height:100%; object-fit:cover; transition:transform .3s; border-radius:16px; }
+    .sgc:hover .sgc-img img { transform:scale(1.07); }
+    .sgc-label { padding:10px 14px 13px; text-align:center; font-family:'Pacifico',cursive; font-size:0.78rem; line-height:1.3; }
+
+    .sgc.s-straw  { background:#ffe8ed; } .sgc.s-straw  .sgc-label { color:#c0184a; }
+    .sgc.s-lemon  { background:#fffbe8; } .sgc.s-lemon  .sgc-label { color:#8a6800; }
+    .sgc.s-classic{ background:#f3eeff; } .sgc.s-classic .sgc-label { color:#5a3ea0; }
+
+    /* FLAVOR BELT */
+    .flavor-belt { background:linear-gradient(120deg,var(--peach),var(--lemon) 50%,var(--mint)); padding:52px 24px; text-align:center; }
+    .flavor-belt h2 { font-family:'Pacifico',cursive; font-size:clamp(1.4rem,3.5vw,2.2rem); color:var(--burg); margin-bottom:24px; }
     .flavor-pills { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; }
-    .fp {
-      display:inline-block; background:var(--white);
-      color:var(--burg); font-size:0.82rem; font-weight:600;
-      padding:9px 20px; border-radius:100px;
-      box-shadow:0 2px 12px rgba(155,36,87,0.1);
-      border:1.5px solid rgba(155,36,87,0.12);
-      transition:transform .15s, box-shadow .15s;
-    }
+    .fp { display:inline-block; background:var(--white); color:var(--burg); font-size:0.82rem; font-weight:600; padding:9px 20px; border-radius:100px; box-shadow:0 2px 12px rgba(155,36,87,0.1); border:1.5px solid rgba(155,36,87,0.12); transition:transform .15s,box-shadow .15s; }
     .fp:hover { transform:translateY(-3px); box-shadow:0 8px 20px rgba(155,36,87,0.18); }
 
-    /* ── EVENT BAND ───────────────────────────────────── */
-    .event-band {
-      background:var(--burg);
-      padding:64px 24px; text-align:center; position:relative; overflow:hidden;
-    }
-    .event-band::after {
-      content:'✦  ✦  ✦'; position:absolute; bottom:16px; left:50%; transform:translateX(-50%);
-      font-size:0.7rem; letter-spacing:0.6em; color:rgba(255,255,255,0.2);
-    }
+    /* EVENT BAND */
+    .event-band { background:var(--burg); padding:64px 24px; text-align:center; position:relative; overflow:hidden; }
+    .event-band::after { content:'✦  ✦  ✦'; position:absolute; bottom:16px; left:50%; transform:translateX(-50%); font-size:0.7rem; letter-spacing:0.6em; color:rgba(255,255,255,0.2); }
     .event-band h2 { font-family:'Abril Fatface',serif; font-size:clamp(1.7rem,4.5vw,3rem); color:var(--white); margin-bottom:10px; }
     .event-band p { font-size:0.92rem; color:rgba(255,255,255,0.72); max-width:480px; margin:0 auto 28px; line-height:1.7; }
     .epills { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
-    .epill {
-      background:rgba(255,255,255,0.14); border:1.5px solid rgba(255,255,255,0.25);
-      border-radius:100px; padding:8px 20px; font-size:0.82rem; font-weight:600; color:var(--white);
-    }
+    .epill { background:rgba(255,255,255,0.14); border:1.5px solid rgba(255,255,255,0.25); border-radius:100px; padding:8px 20px; font-size:0.82rem; font-weight:600; color:var(--white); }
 
-    /* ── ORDER CTA ────────────────────────────────────── */
+    /* ORDER */
     .order { padding:88px 24px; background:var(--cream); text-align:center; }
     .order .sec-h { color:var(--burg); }
     .order .sec-p { max-width:460px; margin:0 auto 36px; }
 
-    /* ── FOOTER ───────────────────────────────────────── */
+    /* FOOTER */
     footer { background:#200810; padding:52px 24px 36px; text-align:center; }
-    .foot-logo { height:76px; width:auto; display:block; margin:0 auto 18px; filter:brightness(0) invert(1) opacity(.8); }
+    .foot-logo-wrap { display:inline-flex; align-items:center; justify-content:center; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); border-radius:16px; padding:12px 20px; margin-bottom:20px; }
+    .foot-logo-wrap img { height:60px; width:auto; display:block; }
     .foot-links { display:flex; gap:24px; justify-content:center; flex-wrap:wrap; margin-bottom:18px; }
     .foot-links a { text-decoration:none; font-size:0.75rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.38); transition:color .2s; }
     .foot-links a:hover { color:var(--white); }
     footer p { font-size:0.72rem; color:rgba(255,255,255,0.25); line-height:1.7; }
 
-    /* ── REVEAL ───────────────────────────────────────── */
-    .reveal { opacity:0; transform:translateY(28px); transition:opacity .6s ease, transform .6s ease; }
+    /* REVEAL */
+    .reveal { opacity:0; transform:translateY(28px); transition:opacity .6s ease,transform .6s ease; }
     .reveal.in { opacity:1; transform:none; }
   </style>
 </head>
@@ -367,7 +340,7 @@
       Cookies that hit<br>
       <span class="swoop">different.</span>
     </h1>
-    <p class="hero-sub">Big Softies &amp; Sugar Cookies — baked fresh, Fort Worth TX</p>
+    <p class="hero-sub">Big Softies and Sugar Cookies. Baked fresh, Fort Worth TX.</p>
     <div class="hero-btns">
       <a href="https://www.facebook.com/profile.php?id=100086331616136" target="_blank" rel="noopener" class="btn btn-fill">Order on Facebook</a>
       <a href="#menu" class="btn btn-soft">See the Menu</a>
@@ -398,31 +371,33 @@
   <div class="container">
     <div class="about-grid">
       <div class="reveal">
-        <img class="about-logo" src="assets/logos/delarosalogo.png" alt="Delarosa">
+        <div class="about-logo-card">
+          <img src="assets/logos/delarosalogo.png" alt="Delarosa Sweet Treats">
+        </div>
         <div class="eyebrow">Who We Are</div>
-        <h2 class="sec-h">Made from scratch.<br>Every single time.</h2>
-        <p class="sec-p">Delarosa Sweet Treats is a Fort Worth bakery known for thick, chewy Big Softies and buttery velvety Sugar Cookies. Every batch is made fresh — no shortcuts, no compromises, just really good cookies.</p>
+        <h2 class="sec-h">Made from scratch. Every single time.</h2>
+        <p class="sec-p">Delarosa Sweet Treats is a Fort Worth bakery known for thick, chewy Big Softies and buttery velvety Sugar Cookies. Every batch is made fresh. No shortcuts, no compromises, just really good cookies.</p>
       </div>
       <div class="feature-cards reveal">
         <div class="fc">
           <div class="fc-icon">🍪</div>
           <div class="fc-text">
             <h3>Big Softies</h3>
-            <p>Thick, chewy, soft-centered. Six flavors — Lemon Dream, Turtle, Cookies &amp; Cream, Birthday Cake, Strawberry Crunch, Cookie Butter Crunch.</p>
+            <p>Thick, chewy, soft-centered. Six flavors: Lemon Dream, Turtle, Cookies &amp; Cream, Birthday Cake, Strawberry Crunch, Cookie Butter Crunch.</p>
           </div>
         </div>
         <div class="fc">
           <div class="fc-icon">🌸</div>
           <div class="fc-text">
             <h3>Sugar Cookies</h3>
-            <p>Buttery and velvety with smooth frosting. Classic, Strawberry, and Lemon Meltaway — perfect for any occasion.</p>
+            <p>Buttery and velvety with smooth frosting. Classic, Strawberry, and Lemon Meltaway. Perfect for any occasion.</p>
           </div>
         </div>
         <div class="fc">
           <div class="fc-icon">📦</div>
           <div class="fc-text">
             <h3>Custom Orders</h3>
-            <p>Birthdays, events, gifting — message us on Facebook and we'll sort you out.</p>
+            <p>Birthdays, events, gifting. Message us on Facebook and we'll sort you out.</p>
           </div>
         </div>
       </div>
@@ -450,13 +425,31 @@
         <div class="cat-line"></div>
       </div>
       <p class="cat-sub">Thick, chewy, soft-centered</p>
-      <div class="g6">
-        <div class="cc"><div class="cc-img"><img src="assets/cookies/lemon-dream.png" alt="Lemon Dream" loading="lazy"></div><div class="cc-name">Lemon Dream</div></div>
-        <div class="cc"><div class="cc-img"><img src="assets/cookies/cookies-cream.png" alt="Cookies & Cream" loading="lazy"></div><div class="cc-name">Cookies &amp; Cream</div></div>
-        <div class="cc"><div class="cc-img"><img src="assets/cookies/birthday-cake.png" alt="Birthday Cake" loading="lazy"></div><div class="cc-name">Birthday Cake</div></div>
-        <div class="cc"><div class="cc-img"><img src="assets/cookies/turtle.png" alt="Turtle" loading="lazy"></div><div class="cc-name">Turtle</div></div>
-        <div class="cc"><div class="cc-img"><img src="assets/cookies/strawberry-crunch.png" alt="Strawberry Crunch" loading="lazy"></div><div class="cc-name">Strawberry Crunch</div></div>
-        <div class="cc"><div class="cc-img"><img src="assets/cookies/cookie-butter-crunch.png" alt="Cookie Butter Crunch" loading="lazy"></div><div class="cc-name">Cookie Butter Crunch</div></div>
+      <div class="softies-grid">
+        <div class="sc lemon">
+          <div class="sc-img"><img src="assets/cookies/lemon-dream.png" alt="Lemon Dream" loading="lazy"></div>
+          <div class="sc-label">Lemon Dream</div>
+        </div>
+        <div class="sc cream">
+          <div class="sc-img"><img src="assets/cookies/cookies-cream.png" alt="Cookies & Cream" loading="lazy"></div>
+          <div class="sc-label">Cookies &amp; Cream</div>
+        </div>
+        <div class="sc bday">
+          <div class="sc-img"><img src="assets/cookies/birthday-cake.png" alt="Birthday Cake" loading="lazy"></div>
+          <div class="sc-label">Birthday Cake</div>
+        </div>
+        <div class="sc turtle">
+          <div class="sc-img"><img src="assets/cookies/turtle.png" alt="Turtle" loading="lazy"></div>
+          <div class="sc-label">Turtle</div>
+        </div>
+        <div class="sc straw">
+          <div class="sc-img"><img src="assets/cookies/strawberry-crunch.png" alt="Strawberry Crunch" loading="lazy"></div>
+          <div class="sc-label">Strawberry Crunch</div>
+        </div>
+        <div class="sc butter">
+          <div class="sc-img"><img src="assets/cookies/cookie-butter-crunch.png" alt="Cookie Butter Crunch" loading="lazy"></div>
+          <div class="sc-label">Cookie Butter Crunch</div>
+        </div>
       </div>
     </div>
 
@@ -466,10 +459,19 @@
         <div class="cat-line"></div>
       </div>
       <p class="cat-sub">Buttery, velvety, frosted with care</p>
-      <div class="g3">
-        <div class="cc"><div class="cc-img"><img src="assets/cookies/sugar-strawberry.png" alt="Strawberry" loading="lazy"></div><div class="cc-name">Strawberry</div></div>
-        <div class="cc"><div class="cc-img"><img src="assets/cookies/sugar-lemon.png" alt="Lemon Meltaway" loading="lazy"></div><div class="cc-name">Lemon Meltaway</div></div>
-        <div class="cc"><div class="cc-img"><img src="assets/cookies/sugar-classic.png" alt="Classic" loading="lazy"></div><div class="cc-name">Classic</div></div>
+      <div class="sugar-grid">
+        <div class="sgc s-straw">
+          <div class="sgc-img"><img src="assets/cookies/sugar-strawberry.png" alt="Strawberry" loading="lazy"></div>
+          <div class="sgc-label">Strawberry</div>
+        </div>
+        <div class="sgc s-lemon">
+          <div class="sgc-img"><img src="assets/cookies/sugar-lemon.png" alt="Lemon Meltaway" loading="lazy"></div>
+          <div class="sgc-label">Lemon Meltaway</div>
+        </div>
+        <div class="sgc s-classic">
+          <div class="sgc-img"><img src="assets/cookies/sugar-classic.png" alt="Classic" loading="lazy"></div>
+          <div class="sgc-label">Classic</div>
+        </div>
       </div>
     </div>
   </div>
@@ -494,12 +496,11 @@
 <!-- EVENT -->
 <div class="event-band">
   <div style="position:relative;max-width:700px;margin:0 auto;">
-    <h2>Find Us May 23rd</h2>
-    <p>Come grab a box at the Delarosa booth — Community Summer Kickoff 2026. Cookies so good you'll be back before the event ends.</p>
+    <h2>Find Us in Fort Worth</h2>
+    <p>Come grab a box at the Delarosa booth. Cookies so good you'll be back before the event ends.</p>
     <div class="epills">
       <div class="epill">📍 Fort Worth, TX</div>
-      <div class="epill">🎪 Community Summer Kickoff 2026</div>
-      <div class="epill">📅 May 23rd, 2026</div>
+      <div class="epill">🍪 Community Summer Kickoff</div>
     </div>
   </div>
 </div>
@@ -509,7 +510,7 @@
   <div class="container">
     <div class="eyebrow">Ready to Order?</div>
     <h2 class="sec-h reveal" style="font-family:'Pacifico',cursive">Let's get you some cookies.</h2>
-    <p class="sec-p reveal">Custom orders, event boxes, or just a treat for yourself — message us on Facebook.</p>
+    <p class="sec-p reveal">Custom orders, event boxes, or just a treat for yourself. Message us on Facebook.</p>
     <div class="reveal">
       <a href="https://www.facebook.com/profile.php?id=100086331616136" target="_blank" rel="noopener" class="btn btn-fill">Message on Facebook</a>
     </div>
@@ -518,7 +519,9 @@
 
 <!-- FOOTER -->
 <footer>
-  <img class="foot-logo" src="assets/logos/delarosalogo.png" alt="Delarosa Sweet Treats">
+  <div class="foot-logo-wrap">
+    <img src="assets/logos/delarosalogo.png" alt="Delarosa Sweet Treats">
+  </div>
   <div class="foot-links">
     <a href="#menu">Menu</a>
     <a href="#about">About</a>
@@ -528,7 +531,7 @@
 </footer>
 
 <script>
-  const io = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } }), { threshold:.1 });
+  const io = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);} }), {threshold:.1});
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
 </body>
